@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>V2Architects.NumberSheets</Name>
+		<Assembly>V2Architects\NumberSheets\V2Architects.NumberSheets.dll</Assembly>
+		<FullClassName>V2Architects.NumberSheets.App</FullClassName>
+		<AddInId>99ba3134-7514-49a1-b203-31a8b9075116</AddInId>
+		<VendorId>V2Architects</VendorId>
+		<VendorDescription>contact me: 2v.archi@gmail.com</VendorDescription>
+	</AddIn>
+</RevitAddIns>

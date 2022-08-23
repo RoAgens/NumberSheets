@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V2Architects.NumberSheets", "V2Architects.NumberSheets\V2Architects.NumberSheets.csproj", "{1E8FA61B-EDDC-45A4-99DD-636D7AC88B45}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{56AED3C5-5F05-4CA2-B393-BD0CA5214469}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E8FA61B-EDDC-45A4-99DD-636D7AC88B45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E8FA61B-EDDC-45A4-99DD-636D7AC88B45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E8FA61B-EDDC-45A4-99DD-636D7AC88B45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E8FA61B-EDDC-45A4-99DD-636D7AC88B45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56AED3C5-5F05-4CA2-B393-BD0CA5214469}.Debug|Any CPU.ActiveCfg = Debug
+		{56AED3C5-5F05-4CA2-B393-BD0CA5214469}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {627AC680-8E04-4D82-ADD7-2231D0E947EF}
+	EndGlobalSection
+EndGlobal
