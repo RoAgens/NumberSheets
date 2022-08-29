@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V2Architects.NumberSheets", "V2Architects.NumberSheets\V2Architects.NumberSheets.csproj", "{1E8FA61B-EDDC-45A4-99DD-636D7AC88B45}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{56AED3C5-5F05-4CA2-B393-BD0CA5214469}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1E8FA61B-EDDC-45A4-99DD-636D7AC88B45} = {1E8FA61B-EDDC-45A4-99DD-636D7AC88B45}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

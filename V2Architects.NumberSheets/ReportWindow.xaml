@@ -8,8 +8,7 @@
         ResizeMode="NoResize"
         SizeToContent="Height"
         Title="Нумерация листов альбома" 
-        WindowStartupLocation="CenterScreen"
-        Icon="pack://application:,,,/V2Architects.NumberSheets;component/Resources/Logo.ico">
+        WindowStartupLocation="CenterScreen">
     <Grid Margin="20">
         <StackPanel>
             <TextBlock x:Name="reportMessage" TextAlignment="Center" Text="Обновлено 23." TextWrapping="Wrap"/>

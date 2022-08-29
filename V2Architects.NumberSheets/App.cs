@@ -6,28 +6,30 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Resources;
 
 namespace V2Architects.NumberSheets
 {
     public class App : IExternalApplication
     {
-        private string tabName = "V2 Tools";
-        private string panelName = "Листы";
-        private string buttonName = "Унификация\nномеров";
-        private string buttonTooltip = "Унификация номеров листов.\n" +
+        private string TabName = "V2 Tools";
+        private string PanelName = "Листы";
+        private string ButtonName = "Нумерация\nлистов";
+        private string _buttonTooltip = "Нумерация листов альбома\n" +
                                       $"v{typeof(App).Assembly.GetName().Version}";
 
-        public string AssemblyPath { get => typeof(App).Assembly.Location; }
+        private static readonly List<string> RequiredRevitVersions = new() { "2019", "2020", "2021", "2022", "2023" };
 
-        public Result OnStartup(UIControlledApplication revit)
+        public Result OnStartup(UIControlledApplication application)
         {
-            if (RunningWrongRevitVersion(revit.ControlledApplication.VersionNumber))
+            if (RunningWrongRevitVersion(application.ControlledApplication.VersionNumber))
             {
                 return Result.Cancelled;
             }
 
-            CreateRibbonTab(revit);
-            CreateButton(CreateRibbonPanel(revit));
+            CreateRibbonTab(application);
+            var panel = CreateRibbonPanel(application);
+            CreateButton(panel);
 
             return Result.Succeeded;
         }
@@ -37,57 +39,58 @@ namespace V2Architects.NumberSheets
             return Result.Succeeded;
         }
 
-
         private static bool RunningWrongRevitVersion(string currentRevitVersion)
         {
-            var requiredRevitVersions = new List<string> { "2019", "2020", "2021", "2022" };
-            return !requiredRevitVersions.Contains(currentRevitVersion);
+            return !RequiredRevitVersions.Contains(currentRevitVersion);
         }
 
-        private void CreateRibbonTab(UIControlledApplication revit)
+        private void CreateRibbonTab(UIControlledApplication application)
         {
             try
             {
-                revit.CreateRibbonTab(tabName);
+                application.CreateRibbonTab(TabName);
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
         }
 
-        private RibbonPanel CreateRibbonPanel(UIControlledApplication revit)
+        private RibbonPanel CreateRibbonPanel(UIControlledApplication application)
         {
-            foreach (RibbonPanel panel in revit.GetRibbonPanels(tabName))
+            foreach (RibbonPanel panel in application.GetRibbonPanels(TabName))
             {
-                if (panel.Name == panelName)
+                if (panel.Name == PanelName)
                 {
                     return panel;
                 }
             }
 
-            return revit.CreateRibbonPanel(tabName, panelName);
+            return application.CreateRibbonPanel(TabName, PanelName);
         }
 
         private void CreateButton(RibbonPanel panel)
         {
             var buttonData = new PushButtonData(
-                nameof(NumberSheets),
-                buttonName,
+                nameof(V2Architects.NumberSheets),
+                ButtonName,
                 typeof(Command).Assembly.Location,
                 typeof(Command).FullName
             );
 
             var pushButton = panel.AddItem(buttonData) as PushButton;
-            pushButton.LargeImage = GetImageSourceByBitMapFromResource(Properties.Resources.LargeImage);
-            pushButton.Image = GetImageSourceByBitMapFromResource(Properties.Resources.Image);
-            pushButton.ToolTip = buttonTooltip;
+            pushButton!.LargeImage = GetImageSourceByBitMapFromResource(Properties.Resources.filter_1_FILL0_wght400_GRAD0_opsz48, 32);
+            pushButton.Image = GetImageSourceByBitMapFromResource(Properties.Resources.filter_1_FILL0_wght400_GRAD0_opsz48, 16);
+            pushButton.ToolTip = _buttonTooltip;
         }
 
-        private ImageSource GetImageSourceByBitMapFromResource(Bitmap source)
+        private ImageSource GetImageSourceByBitMapFromResource(Bitmap source, int size)
         {
             return Imaging.CreateBitmapSourceFromHBitmap(
                 source.GetHbitmap(),
                 IntPtr.Zero,
                 Int32Rect.Empty,
-                BitmapSizeOptions.FromEmptyOptions()
+                BitmapSizeOptions.FromWidthAndHeight(size, size)
             );
         }
     }

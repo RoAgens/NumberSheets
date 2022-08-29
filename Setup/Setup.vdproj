@@ -15,7 +15,31 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_006A0DEC9B72400483CDAAA28B161CB2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_36972D259B544579A67F650F749FC854"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_579C4FC49B064830AA188C1B4FCA21FF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5CBBF278EBE747A693D6D38720E08684"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AA6600FE4DC94F9AB2D96D50FB7AFFD3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -35,6 +59,30 @@
         {
         "MsmKey" = "8:_F5B18662FDE54BE486D277FD5EE9FED3"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_AA6600FE4DC94F9AB2D96D50FB7AFFD3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_36972D259B544579A67F650F749FC854"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_006A0DEC9B72400483CDAAA28B161CB2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5CBBF278EBE747A693D6D38720E08684"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -132,12 +180,136 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_006A0DEC9B72400483CDAAA28B161CB2"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:V2Architects.NumberSheets, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_006A0DEC9B72400483CDAAA28B161CB2"
+                    {
+                    "Name" = "8:V2Architects.NumberSheets.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\V2Architects.NumberSheets\\bin\\Release\\V2Architects.NumberSheets.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_F3AAA8EFF1ED43A89BE2A214E24749AD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_36972D259B544579A67F650F749FC854"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:V2Architects.NumberSheets, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_36972D259B544579A67F650F749FC854"
+                    {
+                    "Name" = "8:V2Architects.NumberSheets.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\V2Architects.NumberSheets\\bin\\Release\\V2Architects.NumberSheets.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7673103761B04DEAA7AD632CF7F7E7BC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_579C4FC49B064830AA188C1B4FCA21FF"
             {
             "SourcePath" = "8:..\\V2Architects.NumberSheets\\V2Architects_NumberSheets.addin"
             "TargetName" = "8:V2Architects_NumberSheets.addin"
             "Tag" = "8:"
             "Folder" = "8:_65252DC508124341BA0EB8CFF906C603"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5CBBF278EBE747A693D6D38720E08684"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:V2Architects.NumberSheets, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_5CBBF278EBE747A693D6D38720E08684"
+                    {
+                    "Name" = "8:V2Architects.NumberSheets.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\V2Architects.NumberSheets\\bin\\Release\\V2Architects.NumberSheets.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_6489709EC2474B39A992DFE0CE198BE3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AA6600FE4DC94F9AB2D96D50FB7AFFD3"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:V2Architects.NumberSheets, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_AA6600FE4DC94F9AB2D96D50FB7AFFD3"
+                    {
+                    "Name" = "8:V2Architects.NumberSheets.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\V2Architects.NumberSheets\\bin\\Release\\V2Architects.NumberSheets.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_6D35DBA9C2E146968854A0B56C76EB1F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -330,9 +502,9 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:V2 Tools Number Sheets"
-        "ProductCode" = "8:{8BD463A0-52F9-4B03-9A97-9F42464EB990}"
+        "ProductCode" = "8:{D9B45858-8F50-4690-B7DE-7156C3D35719}"
         "PackageCode" = "8:{9AE2FC5C-298F-4AD8-9213-FC488B94F39B}"
-        "UpgradeCode" = "8:{39778DB8-BC3C-40E5-AD78-3E8B873D4413}"
+        "UpgradeCode" = "8:{A8AEA67A-2184-4FE2-AE1A-F1977640C2E8}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -344,7 +516,7 @@
         "ARPHELPLINK" = "8:"
         "Title" = "8:Setup NumberSheets"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:PavelAltynnikov"
+        "ARPCONTACT" = "8:RomanKonyaev"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"

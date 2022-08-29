@@ -3,7 +3,9 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
 
 namespace V2Architects.NumberSheets
 {
@@ -11,23 +13,28 @@ namespace V2Architects.NumberSheets
     [RegenerationAttribute(RegenerationOption.Manual)]
     class Command : IExternalCommand
     {
+        private Document _doc;
+        private MainWindow _mainWindow;
+        private List<ViewSheet> _sheets = new List<ViewSheet>();
+        private int _count = 0;
+
         private readonly string _codeSymbol = "\u202A";
         private readonly string _tempCodeSymbol = "\u202B";
 
-
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            var doc = commandData.Application.ActiveUIDocument.Document;
-            
+            _doc = commandData.Application.ActiveUIDocument.Document;
+
+            _mainWindow = new MainWindow();
+            _mainWindow.DataContext = this;
+
+            _ComboB = new ObservableCollection<string>();
+
             try
             {
-                var sheets = new FilteredElementCollector(doc)
-                    .WhereElementIsNotElementType()
-                    .OfClass(typeof(ViewSheet))
-                    .Cast<ViewSheet>()
-                    .ToList();
+                GetDocSheets(); // получение списка листов проекта
 
-                if (sheets.Count == 0)
+                if (_sheets.Count == 0)
                 {
                     var taskDialog = new TaskDialog("Ошибка")
                     {
@@ -39,31 +46,33 @@ namespace V2Architects.NumberSheets
                     return Result.Failed;
                 }
 
-                var definitions = GetBrowserOrganizationParametersForSheets(doc);
-                var unicodesForGroupsInBrowser = GetUnicodesForBrowserOrganization(sheets, definitions);
+                var definitions = GetBrowserOrganizationParametersForSheets(_doc);
+                var unicodesForGroupsInBrowser = GetUnicodesForBrowserOrganization(_sheets, definitions);
 
-                using (var t = new Transaction(doc, "Унификация номеров листов"))
+                using (var t = new Transaction(_doc, "Унификациыя номеров листов"))
                 {
                     t.Start();
 
-                    foreach (var sheet in sheets)
+                    var subgroups1 = _sheets.GroupBy(s => GetGroupKey(s, definitions[0]));
+                    var subgroups11 = subgroups1.ToList();
+
+                    foreach (var sheet1 in subgroups1)
                     {
-                        sheet.SheetNumber = sheet.SheetNumber + _tempCodeSymbol;
+                        var subgroups2 = sheet1.GroupBy(s => GetGroupKey(s, definitions[1]));
+                        var subgroups21 = subgroups2.ToList();
+                        var yyy = subgroups2.Select(x => x.Key).ToList();
+                        yyy.Sort();
+                        yyy.ForEach(x => _ComboB.Add(x));
                     }
 
-                    foreach (var sheet in sheets)
-                    {
-                        sheet.SheetNumber = sheet.SheetNumber.Replace(_tempCodeSymbol, "").Replace(_codeSymbol, "") 
-                            + unicodesForGroupsInBrowser[GetGroupKey(sheet, definitions)];
-                    }
+                    _TextSelectItem = _ComboB[0];
+
+                    _mainWindow.ShowDialog();
 
                     UpdateReviUI();
 
                     t.Commit();
                 }
-
-                var reportWindow = new ReportWindow("Унификация выполнена.");
-                reportWindow.ShowDialog();
 
                 return Result.Succeeded;
             }
@@ -78,6 +87,38 @@ namespace V2Architects.NumberSheets
                 TaskDialog.Show("Ошибка", message);
                 return Result.Failed;
             }
+        }
+
+        private void GetDocSheets()
+        {
+            _sheets = new FilteredElementCollector(_doc)
+            .WhereElementIsNotElementType()
+            .OfClass(typeof(ViewSheet))
+            .Cast<ViewSheet>()
+            .ToList();
+        }
+
+        private void RenameSheets()
+        {
+            var definition = GetBrowserOrganizationParametersForSheets(_doc)[1];
+            _sheets = _sheets.Where(x => GetGroupKey(x, definition) == TextSelectItem).ToList();
+
+            int i = 1;
+            int.TryParse(Text, out i);
+            _sheets.ForEach(x => x.SheetNumber = (i++).ToString());
+            _count = _sheets.Count;
+            ShowReport();
+        }
+
+        //private Definition GetDefinition(ViewSheet vs, )
+        //{
+        //    vs.LookupParameter()
+        //}
+
+        private void ShowReport()
+        {
+            var reportWindow = new ReportWindow($"Обновлено {_count}");
+            reportWindow.ShowDialog();
         }
 
         private List<Definition> GetBrowserOrganizationParametersForSheets(Document doc)
@@ -123,12 +164,107 @@ namespace V2Architects.NumberSheets
             return key;
         }
 
+        private string GetGroupKey(ViewSheet sheet, Definition definition)
+        {
+            var key = string.Empty;
+            key += sheet.get_Parameter(definition).AsString();
+            return key;
+        }
+
         private void UpdateReviUI()
         {
             DockablePaneId dockablePaneId = DockablePanes.BuiltInDockablePanes.ProjectBrowser;
             var dockablePane = new DockablePane(dockablePaneId);
             dockablePane.Show();
             dockablePane.Hide();
+        }
+
+        private string _Text { get; set; }
+
+        /// <summary>
+        /// заполнение техстбокса
+        /// </summary>
+        public string Text
+        {
+            get => _Text;
+            set
+            {
+                _Text = value;
+                //OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// массив для комбобокса 1
+        /// </summary>
+        private ObservableCollection<string> _ComboB { get; set; }
+
+        /// <summary>
+        /// массив для комбобокса
+        /// </summary>
+        public ObservableCollection<string> ComboB
+        {
+            get => _ComboB;
+            set
+            {
+                _ComboB = value;
+                //OnPropertyChanged();
+            }
+        }
+
+        private string _TextSelectItem { get; set; }
+
+        public string TextSelectItem
+        {
+            get => _TextSelectItem;
+            set
+            {
+                _TextSelectItem = value;
+                //Text = _TextSelectItem;
+                //OnPropertyChanged();
+            }
+        }
+
+        private RelayCommand _Btn;
+
+        /// <summary>
+        /// Команда запуска определения помещения 
+        /// </summary>
+        public RelayCommand Btn
+        {
+            get
+            {
+                return _Btn ??
+                    (_Btn = new RelayCommand(obj => { _mainWindow.Close(); RenameSheets(); }));
+            }
+        }
+    }
+
+    public class RelayCommand : ICommand
+    {
+        private Action<object> execute;
+        private Func<object, bool> canExecute;
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
+        {
+            this.execute = execute;
+            this.canExecute = canExecute;
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return this.canExecute == null || this.canExecute(parameter);
+        }
+
+        public void Execute(object parameter)
+        {
+            this.execute(parameter);
         }
     }
 }

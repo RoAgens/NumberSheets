@@ -4,31 +4,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:local="clr-namespace:V2Architects.NumberSheets"
-        Width="280" Height="175"
+        Width="350"
         ResizeMode="NoResize"
         SizeToContent="Height"
         Title="Нумерация листов альбома" 
-        WindowStartupLocation="CenterScreen"
-        Icon="pack://application:,,,/V2Architects.NumberSheets;component/Resources/Logo.ico">
-    <Grid Margin="20">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="17"/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-                <TextBlock TextAlignment="Left"
-                           Text="Альбом:"
-                           TextWrapping="Wrap"/>
-                <TextBlock Grid.Column="1"
-                           TextAlignment="Center"
-                           Text="Первый номер:"
-                           TextWrapping="Wrap"/>
-                <Button Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,0,0" Height="40" Content="Нумеровать"/>
-            </Grid>
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20, 10, 20 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="190"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Альбом:"
+               FontSize="12">
+        </Label>
+        <Label Grid.Column="1"
+               Content="Первый номер:"
+               FontSize="12"/>
+        <ComboBox Grid.Row="1"
+                  Margin="0,0,5,0"
+                  ItemsSource ="{Binding ComboB}"                      
+                  SelectedItem="{Binding TextSelectItem}">
+        </ComboBox>
+        <TextBox Grid.Row="1" Grid.Column="1"
+                 Margin="5,0,0,0"
+                 Text="{Binding Text}"/>
+        <Button Grid.Row="3" Grid.ColumnSpan="2"
+                Content="Нумеровать"
+                Command="{Binding Btn}"/>
     </Grid>
 </Window>
