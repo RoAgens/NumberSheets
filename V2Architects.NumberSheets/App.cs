@@ -15,7 +15,7 @@ namespace V2Architects.NumberSheets
         private string TabName = "V2 Tools";
         private string PanelName = "Листы";
         private string ButtonName = "Нумерация\nлистов";
-        private string _buttonTooltip = "Нумерация листов альбома\n" +
+        private string _buttonTooltip = "Порядковая нумерация листов выбранного альбома.\n" +
                                       $"v{typeof(App).Assembly.GetName().Version}";
 
         private static readonly List<string> RequiredRevitVersions = new() { "2019", "2020", "2021", "2022", "2023" };

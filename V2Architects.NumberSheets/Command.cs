@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Input;
 
 namespace V2Architects.NumberSheets
@@ -102,18 +103,14 @@ namespace V2Architects.NumberSheets
         {
             var definition = GetBrowserOrganizationParametersForSheets(_doc)[1];
             _sheets = _sheets.Where(x => GetGroupKey(x, definition) == TextSelectItem).ToList();
+            _sheets.Sort(new ViewSheetComparer());
 
             int i = 1;
-            int.TryParse(Text, out i);
+            int.TryParse(Text, out i); // начало нумерации
             _sheets.ForEach(x => x.SheetNumber = (i++).ToString());
             _count = _sheets.Count;
             ShowReport();
         }
-
-        //private Definition GetDefinition(ViewSheet vs, )
-        //{
-        //    vs.LookupParameter()
-        //}
 
         private void ShowReport()
         {
@@ -237,6 +234,37 @@ namespace V2Architects.NumberSheets
                 return _Btn ??
                     (_Btn = new RelayCommand(obj => { _mainWindow.Close(); RenameSheets(); }));
             }
+        }
+    }
+
+    /// <summary>
+    /// Компаратор для листов.
+    /// </summary>
+    /// <remarks>Используется умное сравнение <see cref="LogicalStringComparer"/>. Сравнивает по свойству <see cref="ViewSheet.SheetNumber"/>.</remarks>
+    public class ViewSheetComparer : IComparer<ViewSheet>
+    {
+        private readonly LogicalStringComparer _logicalStringComparer = new LogicalStringComparer();
+
+        /// <inheritdoc/>
+        public int Compare(ViewSheet x, ViewSheet y)
+        {
+            return _logicalStringComparer.Compare(x?.SheetNumber, y?.SheetNumber);
+        }
+    }
+
+    /// <summary>
+    /// Умное сравнение строк.
+    /// </summary>
+    /// <remarks>Для сравнения используется метод WinApi <see cref="StrCmpLogicalW"/></remarks>
+    public class LogicalStringComparer : IComparer<string>
+    {
+        [DllImport("shlwapi.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
+        private static extern int StrCmpLogicalW(string x, string y);
+
+        /// <inheritdoc/>
+        public int Compare(string x, string y)
+        {
+            return StrCmpLogicalW(x, y);
         }
     }
 
