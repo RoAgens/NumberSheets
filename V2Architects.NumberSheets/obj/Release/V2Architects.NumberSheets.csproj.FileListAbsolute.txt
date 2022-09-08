@@ -1,0 +1,14 @@
+E:\__Programs\V2Architects.NumberSheets\V2Architects.NumberSheets\obj\Release\MainWindow.g.cs
+E:\__Programs\V2Architects.NumberSheets\V2Architects.NumberSheets\obj\Release\ReportWindow.g.cs
+E:\__Programs\V2Architects.NumberSheets\V2Architects.NumberSheets\obj\Release\V2Architects.NumberSheets_MarkupCompile.cache
+E:\__Programs\V2Architects.NumberSheets\V2Architects.NumberSheets\obj\Release\V2Architects.NumberSheets_MarkupCompile.lref
+E:\__Programs\V2Architects.NumberSheets\V2Architects.NumberSheets\obj\Release\MainWindow.baml
+E:\__Programs\V2Architects.NumberSheets\V2Architects.NumberSheets\obj\Release\ReportWindow.baml
+E:\__Programs\V2Architects.NumberSheets\V2Architects.NumberSheets\obj\Release\V2Architects.NumberSheets.g.resources
+E:\__Programs\V2Architects.NumberSheets\V2Architects.NumberSheets\obj\Release\V2Architects.NumberSheets.csproj.GenerateResource.cache
+E:\__Programs\V2Architects.NumberSheets\V2Architects.NumberSheets\obj\Release\V2Architects.NumberSheets.pdb
+E:\__Programs\V2Architects.NumberSheets\V2Architects.NumberSheets\bin\Release\V2Architects.NumberSheets.dll
+E:\__Programs\V2Architects.NumberSheets\V2Architects.NumberSheets\bin\Release\V2Architects.NumberSheets.pdb
+E:\__Programs\V2Architects.NumberSheets\V2Architects.NumberSheets\obj\Release\V2Architects.NumberSheets.Properties.Resources.resources
+E:\__Programs\V2Architects.NumberSheets\V2Architects.NumberSheets\obj\Release\V2Architects.NumberSheets.csproj.CoreCompileInputs.cache
+E:\__Programs\V2Architects.NumberSheets\V2Architects.NumberSheets\obj\Release\V2Architects.NumberSheets.dll

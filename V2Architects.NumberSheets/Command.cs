@@ -109,7 +109,29 @@ namespace V2Architects.NumberSheets
             int.TryParse(Text, out i); // начало нумерации
             _sheets.ForEach(x => x.SheetNumber = (i++).ToString());
             _count = _sheets.Count;
-            ShowReport();
+
+            // унификация листов
+
+            GetDocSheets();
+
+            var definitions = GetBrowserOrganizationParametersForSheets(_doc);
+            var unicodesForGroupsInBrowser = GetUnicodesForBrowserOrganization(_sheets, definitions);
+
+            foreach (var sheet in _sheets)
+            {
+                sheet.SheetNumber = sheet.SheetNumber + _tempCodeSymbol;
+                var _code = _tempCodeSymbol.ToString();
+            }
+
+            foreach (var sheet in _sheets)
+            {
+                sheet.SheetNumber = sheet.SheetNumber.Replace(_tempCodeSymbol, "").Replace(_codeSymbol, "")
+                    + unicodesForGroupsInBrowser[GetGroupKey(sheet, definitions)];
+            }
+
+            UpdateReviUI();
+
+             ShowReport();
         }
 
         private void ShowReport()
